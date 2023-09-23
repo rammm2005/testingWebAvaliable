@@ -1,10 +1,10 @@
 $(document).ready(function () {
   const categoryMenu = $("#categoryMenu");
-  const lengthScroll = 100;
+  const lengthScroll = $(window).width();
 
   categoryMenu.css("display", "none");
 
-  $(window).on("scroll", function () {
+  function toggleCategoryMenu() {
     let currentScroll = $(window).scrollTop();
 
     if (currentScroll > lengthScroll) {
@@ -12,7 +12,10 @@ $(document).ready(function () {
     } else {
       categoryMenu.css("display", "none");
     }
-  });
+  }
+
+  $(window).on("scroll", toggleCategoryMenu);
+  toggleCategoryMenu();
 
   // Image Freelance Efect
   $("#fadeImg>.freelance-img:gt(0)").hide();
@@ -82,9 +85,8 @@ $(document).ready(function () {
     handleIcons();
   });
 
-
   // Easing Smooth
-    let calcScrollValue = () => {
+  let calcScrollValue = () => {
     let scrollProgress = $("#to-top");
     let progressValue = $(".top-link");
     let topScroll = $(document).scrollTop();
@@ -94,7 +96,9 @@ $(document).ready(function () {
 
     if (topScroll > 200 && scroll) {
       scrollProgress.css("display", "grid");
-       var easeInQuad = new SmoothScroll('[data-easing="easeInQuad"]', {easing: 'easeInQuad'});
+      var easeInQuad = new SmoothScroll('[data-easing="easeInQuad"]', {
+        easing: "easeInQuad",
+      });
     } else {
       scrollProgress.css("display", "none");
     }
@@ -106,7 +110,7 @@ $(document).ready(function () {
   };
   $(window).scroll(calcScrollValue);
   $(document).ready(calcScrollValue);
-
+  
 
   // Popular Slide
   const slidemain = $("#slider-popular");
@@ -115,8 +119,7 @@ $(document).ready(function () {
   const navPrevButton = $("#prevArrow");
 
   let currentIndex = 0;
-  const itemsToShow = 4;
-  // const slideWidth = $(window).width();
+  let itemsToShow = 4; // set 4 item dulu
 
   function showItems(startIndex) {
     item.hide();
@@ -145,6 +148,17 @@ $(document).ready(function () {
     slidePrev();
   });
 
-  // setInterval(slideNext, 3000);
+  // Resize Slide
+  $(window).on("resize", function () {
+    if ($(window).width() <= 768) {
+      itemsToShow = 2;
+    } else if ($(window).width() <= 450) {
+      itemsToShow = 1;
+    } else {
+      itemsToShow = 4;
+    }
+    showItems(currentIndex); // items perwindow berubah
+  });
 
+  // setInterval(slideNext, 3000);
 });

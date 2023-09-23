@@ -44,6 +44,7 @@ html {
     overflow-x: hidden;
     scroll-padding-top: 7rem;
     scroll-behavior: smooth;
+    width: 100%;
 }
 
 html::-webkit-scrollbar {
@@ -79,7 +80,7 @@ main {
     right: 0;
     display: block;
     background-color: var(--bg-white);
-    z-index: 10;
+    z-index: 999;
 }
 
 .main-header .header-wrapper {
@@ -216,7 +217,6 @@ main {
     display: none;
     outline: none;
     border: none;
-    /* background: transparent; */
     background-color: var(--bg-box);
     box-shadow: var(--box-shadow);
     padding: .7rem;
@@ -226,6 +226,7 @@ main {
 .header-wrapper .toogle-search-btn i{
     align-items: center;
     font-size: 2.6rem;
+    color: var(--text-black);
 }
 
 .header-wrapper .toogle-search-btn #x-search{
@@ -610,6 +611,7 @@ main {
 
 /* Choose Us */
 .section-wokpal-solution{
+    position: relative;
     margin-top: 2rem;
     margin-bottom: 10rem;
     display: flex;
@@ -631,6 +633,7 @@ main {
     align-items: center;
     position: relative;
     max-width: 40%;
+    z-index: 1;
 }
 
 .section-wokpal-solution .left-content .text-content{
@@ -1048,7 +1051,10 @@ main {
     grid-column-gap: 13px;
     grid-row-gap: 9px;
     min-height: 100vh;
+    align-content: center;
     max-width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-wrapper .product-content {
